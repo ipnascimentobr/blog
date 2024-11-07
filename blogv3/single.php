@@ -1,7 +1,12 @@
 <?php
     require 'layout/header.php';
-    require 'artigos.php';
-    $artigo = $artigos[$_GET['id']];
+    require 'config.php';
+    require 'src/Artigo.php';
+    
+    $id = $_GET['id'];
+
+    $objArtigo = new Artigo($mysql);
+    $artigo = $objArtigo->encontrarPorId($id);
          
 ?>
 <!DOCTYPE html>

@@ -1,7 +1,10 @@
 <?php
     require 'layout/header.php';
-    require 'artigos.php';
-   
+    require 'config.php';
+    include 'src/Artigo.php';
+    
+    $artigo = new Artigo($mysql);
+    $artigos = $artigo->exibirTodos();
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -17,9 +20,9 @@
     <div id="container">
         
         <h1>Meu Blog</h1>
-        <?php foreach($artigos as $index => $artigo): ?>
+        <?php foreach($artigos as $artigo): ?>
             <h2>
-                <a href="single.php?id=<?php echo $index; ?>">
+                <a href="single.php?id=<?php echo $artigo['id']; ?>">
                     <?php echo $artigo['titulo']; ?>
                 </a>
             </h2>

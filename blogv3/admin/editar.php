@@ -4,11 +4,11 @@ require '../config.php';
 require '../src/Artigo.php';
 require '../src/redireciona.php';
 
-
+$id = $_GET['id'];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $artigo = new Artigo($mysql);
-    $artigo->adicionar($_POST['titulo'], $_POST['conteudo']);
+    $artigo->editar($_POST['id'], $_POST['titulo'], $_POST['conteudo']);
 
     redireciona('/blog/admin/index.php');
 }
@@ -20,13 +20,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <link rel="stylesheet" type="text/css" href="../style.css">
     <meta charset="UTF-8">
-    <title>Adicionar Artigo</title>
+    <title>Editar Artigo</title>
 </head>
 
 <body>
     <div id="container">
-        <h1>Adicionar Artigo</h1>
-        <form action="inserir.php" method="post">
+        <h1>Editar Artigo</h1>
+        <form action="editar.php" method="post">
+            <p>
+                <input type="text" name="id" id="id" value="teste">
+            </p>
             <p>
                 <label for="">Digite o título do artigo</label>
                 <input class="campo-form" type="text" name="titulo" id="titulo" />
@@ -36,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <textarea class="campo-form" type="text" name="conteudo" id="conteudo"></textarea>
             </p>
             <p>
-                <button class="botao">Criar Artigo</button>
+                <button class="botao">Atulizar Artigo</button>
             </p>
         </form>
     </div>

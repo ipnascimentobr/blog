@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div id="container">
         <h1>Você realmente deseja excluir o artigo?</h1>
-        <form method="post" action="excluir-artigo.php">
+        <form method="post" action="delete.php">
             <p>
                 <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
                 <button class="botao">Excluir</button>

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h1>Editar Artigo</h1>
         <form action="editar.php" method="post">
             <p>
-                <input type="text" name="id" id="id" value="teste">
+                <input type="text" name="id" id="id" value="">
             </p>
             <p>
                 <label for="">Digite o título do artigo</label>

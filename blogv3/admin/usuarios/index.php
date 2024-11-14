@@ -18,11 +18,13 @@ $usuarios = $usuario->exibirTodos();
 
 <body>
     <div id="container">
-        <h1>Página Administrativa Usuarios</h1>
+        <h1>Página Administrativa Usuários</h1>
         <div>
             <?php foreach ($usuarios as $usuario) { ?>
             <div id="artigo-admin">
                 <p><?php echo $usuario['nome']; ?></p>
+                <p><?php echo $usuario['apelido']; ?></p>
+                <p><?php echo $usuario['email']; ?></p>
                 <nav>
                     <a class="botao" href="editar.php?id=<?php echo $usuario['id']; ?>">Editar</a>
                     <a class="botao" href="delete.php?id=<?php echo $usuario['id']; ?>">Excluir</a>
@@ -30,7 +32,7 @@ $usuarios = $usuario->exibirTodos();
             </div>
             <?php } ?>
         </div>
-        <a class="botao botao-block" href="inserir.php">Adicionar Artigo</a>
+        <a class="botao botao-block" href="inserir.php">Adicionar Usuários</a>
     </div>
 </body>
 

@@ -34,7 +34,7 @@ class Usuario
 
     public function encontrarPorId(string $id): array
     {
-        $selecionaUsuario = $this->mysql->prepare("SELECT * FROM usarios WHERE id = ?");
+        $selecionaUsuario = $this->mysql->prepare("SELECT * FROM usuarios WHERE id = ?");
         $selecionaUsuario->bind_param('s', $id);
         $selecionaUsuario->execute();
         $usuario = $selecionaUsuario->get_result()->fetch_assoc();

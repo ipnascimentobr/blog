@@ -1,14 +1,14 @@
 <?php
 
 require '../../config.php';
-include '../../src/Usuario.php';
+include '../../src/Artigo.php';
 require '../../src/redireciona.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $usuario = new Usuario($mysql);
-    $usuario->remover($_POST['id']);
+    $artigo = new Artigo($mysql);
+    $artigo->remover($_POST['id']);
 
-    redireciona('/blog/admin/usuarios/index.php');
+    redireciona('/blog/admin/artigos/index.php');
 }
 
 
@@ -19,13 +19,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <link rel="stylesheet" type="text/css" href="../../style.css">
     <meta charset="UTF-8">
-    <title>Excluir Usuário</title>
+    <title>Excluir Artigo</title>
 </head>
 
 <body>
     <div id="container">
-        <h1>Você realmente deseja excluir o Usuário?</h1>
-        <form method="post" action="delete.php">
+        <h1>Você realmente deseja excluir o artigo?</h1>
+        <form method="post" action="<?php $_SERVER['PHP_SELF'] ?>">
             <p>
                 <input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
                 <button class="botao">Excluir</button>

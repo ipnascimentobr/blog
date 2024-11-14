@@ -4,7 +4,7 @@ class Usuario
 {
     private $mysql;
 
-    public function __construnct(mysqli $mysql){
+    public function __construct(mysqli $mysql){
         $this->mysql = $mysql;
     } 
     public function adicionar(string $nome, string $apelido,string $email,string $cpf, string $senha,bool $admin):void

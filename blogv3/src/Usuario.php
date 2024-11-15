@@ -40,4 +40,22 @@ class Usuario
         $usuario = $selecionaUsuario->get_result()->fetch_assoc();
         return $usuario;
     }
+    public function autenticar(string $email, string $senha):bool
+    {
+        $usuario = $this->mysql->prepare("SELECT id, senha, email 
+                                        FROM usuarios WHERE email = ?");
+        $usuario->bind_param('s',$email);
+        $usuario->execute();
+        $resultado = $usuario->get_result()->fetch_assoc();
+        if($resultado && $senha == $resultado['senha']){
+            //Criar sessão com id do usuário
+            $_SESSION['usuario_id']=$resultado['id'];
+            return true;
+        }
+        return false;
+    }
+    public function onlyAdmin():bool
+    {
+        return isset($_SESSION['usuario_id']);
+    }
 }

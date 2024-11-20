@@ -1,4 +1,5 @@
 <?php
+//session_start();
 
 class Usuario
 {
@@ -46,7 +47,7 @@ class Usuario
                                         FROM usuarios WHERE email = ?");
         $usuario->bind_param('s',$email);
         $usuario->execute();
-        $resultado = $usuario->get_result()->fetch_assoc();
+        $resultado = $usuario->get_result()->fetch_assoc(); 
         if($resultado && $senha == $resultado['senha']){
             //Criar sessão com id do usuário
             $_SESSION['usuario_id']=$resultado['id'];
@@ -54,7 +55,7 @@ class Usuario
         }
         return false;
     }
-    public function onlyAdmin():bool
+    public function onlyUser():bool
     {
         return isset($_SESSION['usuario_id']);
     }

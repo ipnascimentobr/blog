@@ -4,12 +4,18 @@ require '../../config.php';
 require '../../src/Usuario.php';
 require '../../src/redireciona.php';
 
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if(is_null($_POST['admin'])){
         $_POST['admin'] = 0;
     }
-    $usuario = new Usuario($mysql);
     $usuario->adicionar($_POST['nome'], 
             $_POST['apelido'],$_POST['email'],
             $_POST['cpf'], $_POST['senha'],
@@ -30,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
     <div id="container">
-        <h1>Adicionar Artigo</h1>
+        <h1>Adicionar Usuário</h1>
         <form action="inserir.php" method="post">
             <p>
                 <label for="">Digite nome do usuário</label>

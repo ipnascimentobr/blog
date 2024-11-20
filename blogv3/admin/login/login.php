@@ -1,4 +1,5 @@
 <?php
+//session_start();
 
 require '../../config.php';
 require '../../src/Usuario.php';
@@ -11,7 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if($validar){
         redireciona('/blog/admin/index.php');
-    }   
+    } else{
+        $mensagem = "Usuário/Senha não encontrado!!";
+    }
 }
 
 ?>
@@ -36,7 +39,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <label for="">Digite a senha</label>
                 <input  class="campo-form" type="password" name="senha" id="senha">
             </p>
-            
+            <p>
+                <?php if( isset($mensagem)){
+                        echo $mensagem;
+                      }   
+                ?>
+            </p>
             <p>
                 <button class="botao">Entrar</button>
             </p>

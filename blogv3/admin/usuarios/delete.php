@@ -4,6 +4,14 @@ require '../../config.php';
 include '../../src/Usuario.php';
 require '../../src/redireciona.php';
 
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usuario = new Usuario($mysql);
     $usuario->remover($_POST['id']);

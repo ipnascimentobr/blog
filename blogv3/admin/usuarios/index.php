@@ -2,6 +2,14 @@
 
 require '../../config.php';
 include '../../src/Usuario.php';
+require '../../src/Usuario.php';
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
 
 $usuario = new Usuario($mysql);
 $usuarios = $usuario->exibirTodos();

@@ -4,6 +4,15 @@ require '../../config.php';
 require '../../src/Artigo.php';
 require '../../src/redireciona.php';
 
+require '../../src/Usuario.php';
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $artigo = new Artigo($mysql);
     $artigo->adicionar($_POST['titulo'], $_POST['conteudo']);

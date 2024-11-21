@@ -1,6 +1,16 @@
 <?php
 //session_start();
 //var_dump($_SESSION['usuario_id']);
+require '../config.php';
+require '../src/Usuario.php';
+require '../src/redireciona.php';
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">

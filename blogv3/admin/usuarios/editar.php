@@ -3,6 +3,14 @@ require '../../config.php';
 require '../../src/Usuario.php';
 require '../../src/redireciona.php';
 
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
+
 $id = $_GET['id'];
 $usuario = new Usuario($mysql);
 $dadosUsuario = $usuario->encontrarPorId($id);

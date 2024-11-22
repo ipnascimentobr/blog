@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 
 class Usuario
 {
@@ -58,5 +58,10 @@ class Usuario
     public function onlyUser():bool
     {
         return isset($_SESSION['usuario_id']);
+    }
+    public function logout()
+    {
+        session_unset();
+        session_destroy();        
     }
 }

@@ -2,6 +2,14 @@
 require '../../config.php';
 require '../../src/Artigo.php';
 require '../../src/redireciona.php';
+require '../../src/Usuario.php';
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
 
 $id = $_GET['id'];
 $artigo = new Artigo($mysql);

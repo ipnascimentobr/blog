@@ -2,6 +2,15 @@
 
 require '../../config.php';
 include '../../src/Artigo.php';
+require '../../src/Usuario.php';
+require '../../src/redireciona.php';
+
+$usuario = new Usuario($mysql);
+$autenticado = $usuario->onlyUser();
+
+if (!($autenticado)){
+    redireciona('/blog/admin/login/login.php');
+}
 
 $artigo = new Artigo($mysql);
 $artigos = $artigo->exibirTodos();
@@ -31,6 +40,8 @@ $artigos = $artigo->exibirTodos();
             <?php } ?>
         </div>
         <a class="botao botao-block" href="inserir.php">Adicionar Artigo</a>
+        <a class="botao botao-block" href="../index.php">Voltar</a>
+        
     </div>
 </body>
 

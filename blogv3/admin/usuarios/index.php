@@ -2,7 +2,7 @@
 
 require '../../config.php';
 include '../../src/Usuario.php';
-require '../../src/Usuario.php';
+require '../../src/redireciona.php';
 
 $usuario = new Usuario($mysql);
 $autenticado = $usuario->onlyUser();
@@ -41,6 +41,8 @@ $usuarios = $usuario->exibirTodos();
             <?php } ?>
         </div>
         <a class="botao botao-block" href="inserir.php">Adicionar Usuários</a>
+        <a class="botao botao-block" href="../index.php">Voltar</a>
+        
     </div>
 </body>
 

@@ -11,6 +11,14 @@ $autenticado = $usuario->onlyUser();
 if (!($autenticado)){
     redireciona('/blog/admin/login/login.php');
 }
+
+if($_SERVER['REQUEST_METHOD']==='POST'){
+    if ($_POST['logout']== 1){
+        $usuario->logout();
+        redireciona('/blog/index.php');
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -27,6 +35,12 @@ if (!($autenticado)){
         
         <a href="/blog/admin/usuarios/index.php" class="dashboard-button">Usuários</a>
         <a href="/blog/admin/artigos/index.php" class="dashboard-button">Artigos</a>
+        
+        <form action="index.php" method="post">
+            <input type="text" name="logout" id="logout" value="1">
+            <button class="botao">Logout</button>
+        </form>
+
     </div>
 </body>
 
